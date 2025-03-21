@@ -15,11 +15,11 @@ export type Folder = {
 };
 
 export const mockFolders: Folder[] = [
-  { id: "0", name: "root", type: "folder", parent: null },
-  { id: "1", name: "Documents", type: "folder", parent: "0" },
-  { id: "2", name: "Images", type: "folder", parent: "0" },
-  { id: "3", name: "Work", type: "folder", parent: "0" },
-  { id: "4", name: "Presentations", type: "folder", parent: "3" },
+  { id: "1", name: "root", type: "folder", parent: null },
+  { id: "2", name: "Documents", type: "folder", parent: "1" },
+  { id: "3", name: "Images", type: "folder", parent: "1" },
+  { id: "4", name: "Work", type: "folder", parent: "1" },
+  { id: "5", name: "Presentations", type: "folder", parent: "4" },
 ];
 
 export const mockFiles: File[] = [
