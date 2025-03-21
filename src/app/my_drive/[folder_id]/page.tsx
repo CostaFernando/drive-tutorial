@@ -4,13 +4,7 @@ import FilesList from "./files_list";
 import { ChevronLeft, FolderPlus, Upload, MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-} from "~/components/ui/breadcrumb";
+import FoldersBreadcrumb from "./folders_breadcrumb";
 
 export default async function FolderPage(props: {
   params: Promise<{ folder_id: string }>;
@@ -59,38 +53,13 @@ export default async function FolderPage(props: {
                 </Button>
               </Link>
             )}
-
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink
-                    href="/my_drive/0"
-                    className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-                  >
-                    My Drive
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                {!isRoot && (
-                  <>
-                    <BreadcrumbSeparator className="text-gray-500 dark:text-gray-400" />
-                    <BreadcrumbItem>
-                      <BreadcrumbLink
-                        href={`/my_drive/${folderParentId}`}
-                        className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-                      >
-                        {folderParentId === 1
-                          ? "Work Projects"
-                          : folderParentId === 2
-                            ? "Personal Documents"
-                            : folderParentId === 3
-                              ? "Vacation Photos"
-                              : `Folder ${folderParentId}`}
-                      </BreadcrumbLink>
-                    </BreadcrumbItem>
-                  </>
-                )}
-              </BreadcrumbList>
-            </Breadcrumb>
+            <Suspense
+              fallback={
+                <div className="h-6 w-32 animate-pulse rounded bg-gray-100 dark:bg-gray-800"></div>
+              }
+            >
+              <FoldersBreadcrumb folderId={folderParentId} />
+            </Suspense>
           </div>
 
           <div className="flex items-center gap-2">
