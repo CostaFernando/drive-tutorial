@@ -62,11 +62,11 @@ export default async function FilesList(props: { folderParentId: number }) {
       {files.map((file) => (
         <Card
           key={file.id}
-          className="transition-shadow duration-200 hover:shadow-sm"
+          className="border-gray-200 bg-white transition-shadow duration-200 hover:shadow-sm dark:border-gray-700 dark:bg-gray-800"
         >
           <CardContent className="p-4">
             <div className="flex items-center gap-4">
-              <div className="text-blue-500">
+              <div className="text-blue-500 dark:text-blue-400">
                 <FileIcon type={file.type} />
               </div>
               <div className="min-w-0 flex-1">

@@ -30,7 +30,11 @@ export default async function FolderPage(props: {
             </h1>
           </div>
           <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm">
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-gray-300 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
               <MoreHorizontal className="mr-2 h-4 w-4" />
               More
             </Button>
@@ -46,7 +50,11 @@ export default async function FolderPage(props: {
                 href={`/my_drive/${folderParentId > 0 ? folderParentId - 1 : 0}`}
                 className="mr-3"
               >
-                <Button variant="ghost" size="icon">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
+                >
                   <ChevronLeft className="h-5 w-5" />
                 </Button>
               </Link>
@@ -55,13 +63,21 @@ export default async function FolderPage(props: {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/my_drive/0">My Drive</BreadcrumbLink>
+                  <BreadcrumbLink
+                    href="/my_drive/0"
+                    className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                  >
+                    My Drive
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 {!isRoot && (
                   <>
-                    <BreadcrumbSeparator />
+                    <BreadcrumbSeparator className="text-gray-500 dark:text-gray-400" />
                     <BreadcrumbItem>
-                      <BreadcrumbLink href={`/my_drive/${folderParentId}`}>
+                      <BreadcrumbLink
+                        href={`/my_drive/${folderParentId}`}
+                        className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                      >
                         {folderParentId === 1
                           ? "Work Projects"
                           : folderParentId === 2
@@ -78,11 +94,18 @@ export default async function FolderPage(props: {
           </div>
 
           <div className="flex items-center gap-2">
-            <Button size="sm">
+            <Button
+              size="sm"
+              className="bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700"
+            >
               <Upload className="mr-2 h-4 w-4" />
               Upload
             </Button>
-            <Button size="sm" variant="outline">
+            <Button
+              size="sm"
+              variant="outline"
+              className="border-gray-300 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
               <FolderPlus className="mr-2 h-4 w-4" />
               New Folder
             </Button>

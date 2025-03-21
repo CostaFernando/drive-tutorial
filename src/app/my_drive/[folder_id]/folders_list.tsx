@@ -20,9 +20,9 @@ export default async function FoldersList(props: { folderParentId: number }) {
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {folders.map((folder) => (
         <Link key={folder.id} href={`/my_drive/${folder.id}`}>
-          <Card className="h-full cursor-pointer transition-shadow duration-200 hover:shadow-md">
+          <Card className="h-full cursor-pointer border-gray-200 bg-white transition-shadow duration-200 hover:shadow-md dark:border-gray-700 dark:bg-gray-800">
             <CardContent className="flex flex-col items-center justify-center p-4 text-center">
-              <div className="mb-2 flex h-16 w-16 items-center justify-center text-blue-500">
+              <div className="mb-2 flex h-16 w-16 items-center justify-center text-blue-500 dark:text-blue-400">
                 <Folder className="h-12 w-12" />
               </div>
               <span className="max-w-full truncate font-medium text-gray-800 dark:text-gray-200">
