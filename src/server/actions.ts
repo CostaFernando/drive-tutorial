@@ -9,6 +9,7 @@ import { mockFolders, mockFiles } from "~/lib/mock-data";
 import { type PutBlobResult } from "@vercel/blob";
 import { revalidatePath } from "next/cache";
 import { createFolder as createFolderQuery } from "~/server/db/queries/folders/create_folder";
+import { deleteFile as deleteFileQuery } from "./db/queries/files/delete_file";
 import { auth } from "~/lib/auth";
 import { headers } from "next/headers";
 
@@ -50,6 +51,19 @@ export async function createFolder(
   await createFolderQuery(folderName, parentFolderId, session.user.id);
 
   revalidatePath(`/my_drive/${parentFolderId}`);
+}
+
+export async function deleteFile(fileId: number, folderId: number) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session?.user?.id) {
+    throw new Error("Not authenticated");
+  }
+  await deleteFileQuery(fileId, folderId);
+
+  revalidatePath(`/my_drive/${folderId}`);
 }
 
 export async function seedDb() {

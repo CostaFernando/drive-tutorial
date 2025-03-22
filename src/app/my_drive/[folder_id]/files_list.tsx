@@ -7,6 +7,7 @@ import {
   FileIcon as FilePdf,
   FileArchive,
   File,
+  Trash2,
 } from "lucide-react";
 import { getFilesByFolderId } from "~/server/db/queries/files/get_files_by_folder_id";
 import {
@@ -17,6 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
+import DeleteFileButton from "./delete_file_button";
 
 function FileIcon({ type }: { type: string }) {
   const iconClass = "w-5 h-5";
@@ -60,6 +62,7 @@ export default async function FilesList(props: { folderParentId: number }) {
             <TableHead className="w-12"></TableHead>
             <TableHead>Name</TableHead>
             <TableHead>Type</TableHead>
+            <TableHead className="w-16">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -83,6 +86,9 @@ export default async function FilesList(props: { folderParentId: number }) {
                     <div className="ml-auto">{file.type.split("/")[1]}</div>
                   </div>
                 </a>
+              </TableCell>
+              <TableCell className="p-2 text-right">
+                <DeleteFileButton fileId={file.id} folderId={folderParentId} />
               </TableCell>
             </TableRow>
           ))}
