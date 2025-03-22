@@ -5,7 +5,7 @@ import type React from "react";
 import type { PutBlobResult } from "@vercel/blob";
 import { upload } from "@vercel/blob/client";
 import { useState, useRef } from "react";
-import { createFile } from "~/server/actions";
+import { createFile } from "~/server/actions/files/files_actions";
 import { Button } from "~/components/ui/button";
 import { Loader2 } from "lucide-react";
 

@@ -2,7 +2,7 @@ import { headers } from "next/headers";
 import { auth } from "~/lib/auth";
 import { redirect } from "next/navigation";
 import { getRootFolderByUserId } from "~/server/db/queries/folders/get_root_folder_by_user_id";
-import { createFolder } from "~/server/db/queries/folders/create_folder";
+import { createFolder } from "~/server/actions/folders/folders_actions";
 
 export default async function MyDrive() {
   const session = await auth.api.getSession({
@@ -18,7 +18,7 @@ export default async function MyDrive() {
     if (!rootFolder) {
       const folderName = "My Drive";
       const parentFolderId = null;
-      await createFolder(folderName, parentFolderId, userId);
+      await createFolder(folderName, parentFolderId);
       rootFolder = await getRootFolderByUserId(userId);
     }
 

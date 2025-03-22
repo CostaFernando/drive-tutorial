@@ -3,7 +3,7 @@
 import { Trash2, Loader2 } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { Button } from "~/components/ui/button";
-import { deleteFile } from "~/server/actions";
+import { deleteFile } from "~/server/actions/files/files_actions";
 
 function DeleteButton() {
   const { pending } = useFormStatus();
