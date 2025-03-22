@@ -8,7 +8,7 @@ import {
 import { mockFolders, mockFiles } from "~/lib/mock-data";
 import { type PutBlobResult } from "@vercel/blob";
 import { revalidatePath } from "next/cache";
-import { createFolder as createFolderQuery } from "~/server/db/queries/create_folder";
+import { createFolder as createFolderQuery } from "~/server/db/queries/folders/create_folder";
 import { auth } from "~/lib/auth";
 import { headers } from "next/headers";
 

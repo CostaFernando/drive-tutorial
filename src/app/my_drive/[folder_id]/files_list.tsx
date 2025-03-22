@@ -8,7 +8,7 @@ import {
   FileArchive,
   File,
 } from "lucide-react";
-import { getFilesByFolderId } from "~/server/db/queries/get_files_by_folder_id";
+import { getFilesByFolderId } from "~/server/db/queries/files/get_files_by_folder_id";
 import {
   Table,
   TableBody,

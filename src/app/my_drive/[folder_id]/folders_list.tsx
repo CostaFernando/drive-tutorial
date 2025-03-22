@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Folder } from "lucide-react";
 import { Card, CardContent } from "~/components/ui/card";
-import { getFoldersByParentId } from "~/server/db/queries/get_folders_by_parent_id";
+import { getFoldersByParentId } from "~/server/db/queries/folders/get_folders_by_parent_id";
 
 export default async function FoldersList(props: { folderParentId: number }) {
   const { folderParentId } = props;

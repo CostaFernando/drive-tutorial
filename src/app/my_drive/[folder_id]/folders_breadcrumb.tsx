@@ -7,7 +7,7 @@ import {
 } from "~/components/ui/breadcrumb";
 import React from "react";
 
-import { getFolderInfoWithParents } from "~/server/db/queries/get_folder_by_id";
+import { getFolderInfoWithParents } from "~/server/db/queries/folders/get_folder_by_id";
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
 import { ChevronLeft } from "lucide-react";
@@ -17,7 +17,7 @@ export default async function FoldersBreadcrumb(props: { folderId: number }) {
 
   const folderAndParents = await getFolderInfoWithParents(folderId);
   if (!folderAndParents || folderAndParents.length === 0) {
-    return null; // Handle the case where folder is not found
+    return null;
   }
   const currentFolder = folderAndParents[folderAndParents.length - 1];
   const isRoot = currentFolder?.parentId === null;
