@@ -10,7 +10,7 @@ import { Button } from "~/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { authClient } from "~/lib/auth-client";
 
-export default function UploadFile({
+export default function UploadFileForm({
   folderId,
   onUploadComplete,
 }: {
@@ -33,13 +33,12 @@ export default function UploadFile({
         throw new Error("User not authenticated");
       }
 
-      if (!inputFileRef.current?.files) {
+      if (!inputFileRef.current?.files || !inputFileRef.current.files[0]) {
         throw new Error("No file selected");
       }
 
       const file = inputFileRef.current.files[0];
 
-      // Use the custom file name if provided, otherwise use the original file name
       const uploadName = fileName || file.name;
 
       const newBlob = await upload(uploadName, file, {

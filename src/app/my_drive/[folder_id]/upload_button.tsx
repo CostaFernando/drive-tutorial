@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Upload } from "lucide-react";
 import { Button } from "~/components/ui/button";
-import UploadFile from "./upload_file";
+import UploadFileForm from "./upload_file_form";
 import {
   Dialog,
   DialogContent,
@@ -34,7 +34,7 @@ export default function UploadFileDialog({ folderId }: { folderId: number }) {
             Select a file to upload to this folder.
           </DialogDescription>
         </DialogHeader>
-        <UploadFile
+        <UploadFileForm
           folderId={folderId}
           onUploadComplete={() => {
             setOpen(false);
