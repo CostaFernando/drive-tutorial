@@ -41,10 +41,10 @@ export default async function FoldersBreadcrumb(props: { folderId: number }) {
               )}
               <BreadcrumbItem>
                 <BreadcrumbLink
-                  href={`/my_drive/${folder.id}`}
+                  asChild
                   className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
                 >
-                  {folder.name}
+                  <Link href={`/my_drive/${folder.id}`}>{folder.name}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
             </React.Fragment>
