@@ -25,7 +25,7 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import { signIn } from "~/lib/auth-client";
+import { authClient } from "~/lib/auth-client";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -52,7 +52,7 @@ export default function SignInForm() {
     setIsLoading(true);
 
     try {
-      const response = await signIn.email({
+      const response = await authClient.signIn.email({
         email: values.email,
         password: values.password,
       });

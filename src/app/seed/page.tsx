@@ -2,7 +2,7 @@ import { mockFolders, mockFiles } from "~/lib/mock-data";
 import { db } from "~/server/db";
 import { files, folders } from "~/server/db/schema";
 
-export default function Seed() {
+export default function SeedPage() {
   async function seedDb() {
     "use server";
 
@@ -13,7 +13,7 @@ export default function Seed() {
         type: file.type,
         folderId: (index % 3) + 1,
         size: parseInt(file.size),
-        ownerId: 1,
+        ownerId: "1",
       })),
     );
 
@@ -24,7 +24,7 @@ export default function Seed() {
         id: index + 1,
         name: folder.name,
         parentId: folder.parent ? parseInt(folder.parent) : null,
-        ownerId: 1,
+        ownerId: "1",
       })),
     );
     console.log("Inserted folders:", insertedFolders);
