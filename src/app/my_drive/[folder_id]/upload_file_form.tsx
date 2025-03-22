@@ -8,7 +8,6 @@ import { useState, useRef } from "react";
 import { createFile } from "~/server/actions";
 import { Button } from "~/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { authClient } from "~/lib/auth-client";
 
 export default function UploadFileForm({
   folderId,
@@ -22,17 +21,11 @@ export default function UploadFileForm({
   const [isUploading, setIsUploading] = useState(false);
   const [fileName, setFileName] = useState("");
 
-  const { data: session } = authClient.useSession();
-
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setIsUploading(true);
 
     try {
-      if (!session) {
-        throw new Error("User not authenticated");
-      }
-
       if (!inputFileRef.current?.files || !inputFileRef.current.files[0]) {
         throw new Error("No file selected");
       }
@@ -48,9 +41,7 @@ export default function UploadFileForm({
 
       setBlob(newBlob);
 
-      const ownerId = session.user.id;
-
-      await createFile(newBlob, folderId, ownerId);
+      await createFile(newBlob, folderId);
 
       if (onUploadComplete) {
         onUploadComplete();
