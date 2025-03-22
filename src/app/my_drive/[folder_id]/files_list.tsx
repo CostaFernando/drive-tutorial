@@ -48,26 +48,31 @@ export default async function FilesList(props: { folderParentId: number }) {
   return (
     <div className="space-y-3">
       {files.map((file) => (
-        <Card
+        <a
           key={file.id}
-          className="border-gray-200 bg-white transition-shadow duration-200 hover:shadow-sm dark:border-gray-700 dark:bg-gray-800"
+          href={file.url ?? "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block"
         >
-          <CardContent className="p-4">
-            <div className="flex items-center gap-4">
-              <div className="text-blue-500 dark:text-blue-400">
-                <FileIcon type={file.type} />
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="truncate font-medium text-gray-800 dark:text-gray-200">
-                  {file.name}
+          <Card className="border-gray-200 bg-white transition-shadow duration-200 hover:shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-4">
+                <div className="text-blue-500 dark:text-blue-400">
+                  <FileIcon type={file.type} />
                 </div>
-                <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                  <span>{file.type.split("/")[1]}</span>
+                <div className="min-w-0 flex-1">
+                  <div className="truncate font-medium text-gray-800 dark:text-gray-200">
+                    {file.name}
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                    <span>{file.type.split("/")[1]}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </a>
       ))}
     </div>
   );
