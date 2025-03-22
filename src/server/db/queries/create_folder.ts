@@ -1,3 +1,5 @@
+import "server-only";
+
 import { db } from "~/server/db";
 import { folders as foldersSchema } from "~/server/db/schema";
 

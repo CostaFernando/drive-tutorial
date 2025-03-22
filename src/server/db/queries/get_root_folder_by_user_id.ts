@@ -1,3 +1,5 @@
+import "server-only";
+
 import { db } from "~/server/db";
 import { eq, and, isNull } from "drizzle-orm";
 import { folders as foldersSchema } from "~/server/db/schema";
