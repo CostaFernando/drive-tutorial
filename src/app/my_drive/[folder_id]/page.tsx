@@ -10,9 +10,9 @@ export default async function FolderPage(props: {
   params: Promise<{ folder_id: string }>;
 }) {
   const { folder_id } = await props.params;
-  const folderParentId = Number(folder_id) || 0;
+  const folderId = Number(folder_id) || 1;
 
-  const isRoot = folderParentId === 0;
+  const isRoot = folderId === 1;
 
   return (
     <div className="space-y-4">
@@ -20,7 +20,7 @@ export default async function FolderPage(props: {
         <div className="flex items-center">
           {!isRoot && (
             <Link
-              href={`/my_drive/${folderParentId > 0 ? folderParentId - 1 : 0}`}
+              href={`/my_drive/${folderId > 0 ? folderId - 1 : 0}`}
               className="mr-3"
             >
               <Button
@@ -37,7 +37,7 @@ export default async function FolderPage(props: {
               <div className="h-6 w-32 animate-pulse rounded bg-gray-100 dark:bg-gray-800"></div>
             }
           >
-            <FoldersBreadcrumb folderId={folderParentId} />
+            <FoldersBreadcrumb folderId={folderId} />
           </Suspense>
         </div>
 
@@ -76,7 +76,7 @@ export default async function FolderPage(props: {
             </div>
           }
         >
-          <FoldersList folderParentId={folderParentId} />
+          <FoldersList folderParentId={folderId} />
         </Suspense>
       </div>
 
@@ -96,7 +96,7 @@ export default async function FolderPage(props: {
             </div>
           }
         >
-          <FilesList folderParentId={folderParentId} />
+          <FilesList folderParentId={folderId} />
         </Suspense>
       </div>
     </div>
