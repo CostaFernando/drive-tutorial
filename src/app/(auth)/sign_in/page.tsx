@@ -155,7 +155,7 @@ export default function SignInForm() {
       </CardContent>
       <CardFooter className="flex justify-center">
         <p className="text-muted-foreground text-sm">
-          Don't have an account?{" "}
+          {"Don't have an account? "}
           <Link
             href="/sign_up"
             className="text-primary font-medium hover:underline"
