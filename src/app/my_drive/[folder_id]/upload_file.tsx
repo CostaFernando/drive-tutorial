@@ -9,7 +9,6 @@ import { createFile } from "~/server/actions";
 import { Button } from "~/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { authClient } from "~/lib/auth-client";
-import { redirect } from "next/navigation";
 
 export default function UploadFile({
   folderId,

@@ -8,29 +8,29 @@ export async function POST(request: Request): Promise<NextResponse> {
     const jsonResponse = await handleUpload({
       body,
       request,
-      onBeforeGenerateToken: async (
-        pathname,
+      onBeforeGenerateToken: async () =>
+        // pathname,
         /* clientPayload */
-      ) => {
-        // Generate a client token for the browser to upload the file
-        // ⚠️ Authenticate and authorize users before generating the token.
-        // Otherwise, you're allowing anonymous uploads.
+        {
+          // Generate a client token for the browser to upload the file
+          // ⚠️ Authenticate and authorize users before generating the token.
+          // Otherwise, you're allowing anonymous uploads.
 
-        return {
-          allowedContentTypes: [
-            "image/*",
-            "video/*",
-            "audio/*",
-            "application/pdf",
-            "text/csv",
-          ],
-          maximumSizeInBytes: 50 * 1024 * 1024, // 50MB
-          tokenPayload: JSON.stringify({
-            // optional, sent to your server on upload completion
-            // you could pass a user id from auth, or a value from clientPayload
-          }),
-        };
-      },
+          return {
+            allowedContentTypes: [
+              "image/*",
+              "video/*",
+              "audio/*",
+              "application/pdf",
+              "text/csv",
+            ],
+            maximumSizeInBytes: 50 * 1024 * 1024, // 50MB
+            tokenPayload: JSON.stringify({
+              // optional, sent to your server on upload completion
+              // you could pass a user id from auth, or a value from clientPayload
+            }),
+          };
+        },
       onUploadCompleted: async ({ blob, tokenPayload }) => {
         // Get notified of client upload completion
         // ⚠️ This will not work on `localhost` websites,
@@ -43,6 +43,7 @@ export async function POST(request: Request): Promise<NextResponse> {
           // const { userId } = JSON.parse(tokenPayload);
           // await db.update({ avatar: blob.url, userId });
         } catch (error) {
+          console.error("Error updating user", error);
           throw new Error("Could not update user");
         }
       },

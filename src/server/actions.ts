@@ -8,7 +8,6 @@ import {
 import { mockFolders, mockFiles } from "~/lib/mock-data";
 import { type PutBlobResult } from "@vercel/blob";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 
 export async function createFile(
   fileBlob: PutBlobResult,
