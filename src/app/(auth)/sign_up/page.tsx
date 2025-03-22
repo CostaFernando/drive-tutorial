@@ -263,7 +263,11 @@ export default function SignUpPage() {
                 </div>
               </div>
             </div>
-            <Button type="submit" className="mt-2 w-full" disabled={loading}>
+            <Button
+              type="submit"
+              className="mt-2 w-full bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"
+              disabled={loading}
+            >
               {loading ? (
                 <Loader2 size={16} className="animate-spin" />
               ) : (
