@@ -4,7 +4,7 @@ import { auth } from "~/lib/auth";
 import { headers } from "next/headers";
 import Link from "next/link";
 
-export default async function Home() {
+export default async function HomePage() {
   // Provisory. This you be the main page of the app.
   const session = await auth.api.getSession({
     headers: await headers(),

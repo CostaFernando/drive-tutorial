@@ -26,6 +26,7 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import { authClient } from "~/lib/auth-client";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -35,7 +36,7 @@ const formSchema = z.object({
   rememberMe: z.boolean().default(false),
 });
 
-export default function SignInForm() {
+export default function SignInPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -49,23 +50,25 @@ export default function SignInForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsLoading(true);
-
     try {
-      const response = await authClient.signIn.email({
+      await authClient.signIn.email({
         email: values.email,
         password: values.password,
+        callbackURL: "/my_drive/1",
+        fetchOptions: {
+          onRequest: () => {
+            setIsLoading(true);
+          },
+          onSuccess: () => router.push("/my_drive/1"),
+          onError: (ctx) => {
+            toast.error(ctx.error.message);
+            form.setError("email", {
+              type: "manual",
+              message: ctx.error.message,
+            });
+          },
+        },
       });
-
-      if (response.error) {
-        form.setError("email", {
-          type: "manual",
-          message: response.error.message,
-        });
-        return;
-      }
-
-      router.push("/my_drive/1");
     } catch (error) {
       console.error("Login failed:", error);
     } finally {

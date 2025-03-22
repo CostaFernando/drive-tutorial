@@ -30,7 +30,7 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 
-import { signUp } from "~/lib/auth-client";
+import { authClient } from "~/lib/auth-client";
 
 const formSchema = z
   .object({
@@ -49,7 +49,7 @@ const formSchema = z
     path: ["passwordConfirmation"],
   });
 
-export default function SignUp() {
+export default function SignUpPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState<File | null>(null);
@@ -91,21 +91,19 @@ export default function SignUp() {
     setLoading(true);
 
     try {
-      await signUp.email({
+      await authClient.signUp.email({
         email: values.email,
         password: values.password,
         name: `${values.firstName} ${values.lastName}`,
         image: image ? await convertImageToBase64(image) : "",
         callbackURL: "/my_drive/1",
         fetchOptions: {
-          onSuccess: () => router.push("/"),
+          onSuccess: () => router.push("/my_drive/1"),
           onError: (ctx) => {
             toast.error(ctx.error.message);
           },
         },
       });
-
-      router.push("/my_drive/1");
     } catch (error) {
       toast.error("Sign up failed. Please try again.");
       console.error("Sign up failed:", error);
