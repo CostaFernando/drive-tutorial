@@ -8,8 +8,15 @@ import {
   FileArchive,
   File,
 } from "lucide-react";
-import { Card, CardContent } from "~/components/ui/card";
 import { getFilesByFolderId } from "~/server/db/queries/get_files_by_folder_id";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "~/components/ui/table";
 
 function FileIcon({ type }: { type: string }) {
   const iconClass = "w-5 h-5";
@@ -46,34 +53,41 @@ export default async function FilesList(props: { folderParentId: number }) {
   }
 
   return (
-    <div className="space-y-3">
-      {files.map((file) => (
-        <a
-          key={file.id}
-          href={file.url ?? "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block"
-        >
-          <Card className="border-gray-200 bg-white transition-shadow duration-200 hover:shadow-sm dark:border-gray-700 dark:bg-gray-800">
-            <CardContent className="p-4">
-              <div className="flex items-center gap-4">
-                <div className="text-blue-500 dark:text-blue-400">
-                  <FileIcon type={file.type} />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="truncate font-medium text-gray-800 dark:text-gray-200">
-                    {file.name}
+    <div className="rounded-md border bg-gray-200 dark:bg-gray-800 dark:text-gray-200">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-12"></TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead>Type</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {files.map((file) => (
+            <TableRow
+              key={file.id}
+              className="hover:bg-gray-100 dark:hover:bg-gray-900"
+            >
+              <TableCell className="p-0" colSpan={3}>
+                <a
+                  href={file.url ?? "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex cursor-pointer p-4"
+                >
+                  <div className="flex w-full items-center">
+                    <div className="w-12 text-blue-500 dark:text-blue-400">
+                      <FileIcon type={file.type} />
+                    </div>
+                    <div className="font-medium">{file.name}</div>
+                    <div className="ml-auto">{file.type.split("/")[1]}</div>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                    <span>{file.type.split("/")[1]}</span>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </a>
-      ))}
+                </a>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </div>
   );
 }
