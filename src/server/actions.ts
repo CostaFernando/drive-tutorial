@@ -7,6 +7,8 @@ import {
 } from "~/server/db/schema";
 import { mockFolders, mockFiles } from "~/lib/mock-data";
 import { type PutBlobResult } from "@vercel/blob";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function createFile(
   fileBlob: PutBlobResult,
@@ -20,6 +22,8 @@ export async function createFile(
     folderId: folderId,
     ownerId: ownerId,
   });
+
+  revalidatePath(`/my_drive/${folderId}`);
 }
 
 export async function seedDb() {

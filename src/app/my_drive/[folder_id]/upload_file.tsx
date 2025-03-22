@@ -9,6 +9,7 @@ import { createFile } from "~/server/actions";
 import { Button } from "~/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { authClient } from "~/lib/auth-client";
+import { redirect } from "next/navigation";
 
 export default function UploadFile({
   folderId,
@@ -70,7 +71,7 @@ export default function UploadFile({
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 bg-white p-4 shadow-md dark:bg-gray-800 dark:text-gray-200">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="file" className="mb-1 block text-sm font-medium">
