@@ -1,8 +1,7 @@
 import { Suspense } from "react";
 import FoldersList from "./folders_list";
 import FilesList from "./files_list";
-import { ChevronLeft, FolderPlus, Upload } from "lucide-react";
-import Link from "next/link";
+import { FolderPlus, Upload } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import FoldersBreadcrumb from "./folders_breadcrumb";
 
@@ -12,26 +11,10 @@ export default async function FolderPage(props: {
   const { folder_id } = await props.params;
   const folderId = Number(folder_id) || 1;
 
-  const isRoot = folderId === 1;
-
   return (
     <div className="space-y-4">
       <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div className="flex items-center">
-          {!isRoot && (
-            <Link
-              href={`/my_drive/${folderId > 0 ? folderId - 1 : 0}`}
-              className="mr-3"
-            >
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </Button>
-            </Link>
-          )}
           <Suspense
             fallback={
               <div className="h-6 w-32 animate-pulse rounded bg-gray-100 dark:bg-gray-800"></div>
