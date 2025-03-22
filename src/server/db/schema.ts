@@ -15,9 +15,8 @@ export const users = singlestoreTable(
   `${env.SINGLESTORE_TABLES_PREFIX}_users`,
   {
     id: varchar("id", { length: 36 }).primaryKey(),
-    name: varchar({ length: 255 }).notNull(),
-    age: int(),
-    email: varchar({ length: 255 }).notNull(),
+    name: varchar("name", { length: 255 }).notNull(),
+    email: varchar("email", { length: 255 }).notNull(),
     emailVerified: boolean("email_verified").notNull(),
     image: text("image"),
     createdAt: timestamp("created_at").notNull(),
@@ -90,10 +89,12 @@ export const verifications = singlestoreTable(
 export const files = singlestoreTable(
   `${env.SINGLESTORE_TABLES_PREFIX}_files`,
   {
-    id: bigint({ mode: "number", unsigned: true }).primaryKey().autoincrement(),
-    name: varchar({ length: 255 }).notNull(),
-    type: varchar({ length: 50 }).notNull(),
-    size: int().notNull(),
+    id: bigint("id", { mode: "number", unsigned: true })
+      .primaryKey()
+      .autoincrement(),
+    name: varchar("name", { length: 255 }).notNull(),
+    url: text("url"),
+    type: varchar("type", { length: 50 }).notNull(),
     folderId: bigint("folder_id", { mode: "number", unsigned: true }).notNull(),
     ownerId: varchar("owner_id", { length: 36 }).notNull(),
   },
@@ -117,8 +118,10 @@ export const filesRelations = relations(files, ({ one }) => ({
 export const folders = singlestoreTable(
   `${env.SINGLESTORE_TABLES_PREFIX}_folders`,
   {
-    id: bigint({ mode: "number", unsigned: true }).primaryKey().autoincrement(),
-    name: varchar({ length: 255 }).notNull(),
+    id: bigint("id", { mode: "number", unsigned: true })
+      .primaryKey()
+      .autoincrement(),
+    name: varchar("name", { length: 255 }).notNull(),
     parentId: bigint("parent_id", { mode: "number", unsigned: true }),
     ownerId: varchar("owner_id", { length: 36 }).notNull(),
   },

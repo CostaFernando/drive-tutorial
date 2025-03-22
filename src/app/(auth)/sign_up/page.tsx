@@ -96,9 +96,9 @@ export default function SignUpPage() {
         password: values.password,
         name: `${values.firstName} ${values.lastName}`,
         image: image ? await convertImageToBase64(image) : "",
-        callbackURL: "/my_drive/1",
+        callbackURL: "/my_drive",
         fetchOptions: {
-          onSuccess: () => router.push("/my_drive/1"),
+          onSuccess: () => router.push("/my_drive"),
           onError: (ctx) => {
             toast.error(ctx.error.message);
           },

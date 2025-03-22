@@ -53,12 +53,12 @@ export default function SignInPage() {
       await authClient.signIn.email({
         email: values.email,
         password: values.password,
-        callbackURL: "/my_drive/1",
+        callbackURL: "/my_drive",
         fetchOptions: {
           onRequest: () => {
             setIsLoading(true);
           },
-          onSuccess: () => router.push("/my_drive/1"),
+          onSuccess: () => router.push("/my_drive"),
           onError: (ctx) => {
             toast.error(ctx.error.message);
             form.setError("email", {
@@ -98,7 +98,7 @@ export default function SignInPage() {
             onClick={async () => {
               await authClient.signIn.social({
                 provider: "google",
-                callbackURL: "/my_drive/1",
+                callbackURL: "/my_drive",
               });
             }}
           >

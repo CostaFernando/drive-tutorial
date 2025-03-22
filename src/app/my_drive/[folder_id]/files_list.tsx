@@ -32,18 +32,6 @@ function FileIcon({ type }: { type: string }) {
   return <File className={iconClass} />;
 }
 
-function formatFileSize(bytes: number): string {
-  if (bytes === 0) return "0 Bytes";
-
-  const k = 1024;
-  const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-  return (
-    Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i]
-  );
-}
-
 export default async function FilesList(props: { folderParentId: number }) {
   const { folderParentId } = props;
 
@@ -75,8 +63,6 @@ export default async function FilesList(props: { folderParentId: number }) {
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
                   <span>{file.type.split("/")[1]}</span>
-                  <span>•</span>
-                  <span>{formatFileSize(file.size)}</span>
                 </div>
               </div>
             </div>

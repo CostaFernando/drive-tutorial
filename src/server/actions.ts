@@ -6,17 +6,29 @@ import {
   folders as foldersSchema,
 } from "~/server/db/schema";
 import { mockFolders, mockFiles } from "~/lib/mock-data";
+import { type PutBlobResult } from "@vercel/blob";
+
+export async function createFile(
+  fileBlob: PutBlobResult,
+  folderId: number,
+  ownerId: string,
+): Promise<void> {
+  await db.insert(filesSchema).values({
+    name: fileBlob.pathname,
+    type: fileBlob.contentType,
+    url: fileBlob.url,
+    folderId: folderId,
+    ownerId: ownerId,
+  });
+}
 
 export async function seedDb() {
-  "use server";
-
   const insertedFiles = await db.insert(filesSchema).values(
     mockFiles.map((file, index) => ({
       id: index + 1,
       name: file.name,
       type: file.type,
       folderId: (index % 3) + 1,
-      size: parseInt(file.size),
       ownerId: "1",
     })),
   );

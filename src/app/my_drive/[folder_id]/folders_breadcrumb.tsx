@@ -16,6 +16,9 @@ export default async function FoldersBreadcrumb(props: { folderId: number }) {
   const { folderId } = props;
 
   const folderAndParents = await getFolderInfoWithParents(folderId);
+  if (!folderAndParents || folderAndParents.length === 0) {
+    return null; // Handle the case where folder is not found
+  }
   const currentFolder = folderAndParents[folderAndParents.length - 1];
   const isRoot = currentFolder?.parentId === null;
 

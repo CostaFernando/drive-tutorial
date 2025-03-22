@@ -8,7 +8,6 @@ export const getFilesByFolderId = async (folderId: number) => {
       id: filesSchema.id,
       name: filesSchema.name,
       type: filesSchema.type,
-      size: filesSchema.size,
     })
     .from(filesSchema)
     .where(eq(filesSchema.folderId, folderId))

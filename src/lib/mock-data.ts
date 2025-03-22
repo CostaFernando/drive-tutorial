@@ -4,7 +4,6 @@ export interface File {
   type: "file";
   url: string;
   parent: string;
-  size: string;
 }
 
 export type Folder = {
@@ -29,7 +28,6 @@ export const mockFiles: File[] = [
     type: "file",
     url: "/files/resume.pdf",
     parent: "0",
-    size: "1.2 MB",
   },
   {
     id: "5",
@@ -37,7 +35,6 @@ export const mockFiles: File[] = [
     type: "file",
     url: "/files/proposal.docx",
     parent: "1",
-    size: "2.5 MB",
   },
   {
     id: "6",
@@ -45,7 +42,6 @@ export const mockFiles: File[] = [
     type: "file",
     url: "/files/vacation.jpg",
     parent: "2",
-    size: "3.7 MB",
   },
   {
     id: "7",
@@ -53,7 +49,6 @@ export const mockFiles: File[] = [
     type: "file",
     url: "/files/profile.png",
     parent: "2",
-    size: "1.8 MB",
   },
   {
     id: "9",
@@ -61,7 +56,6 @@ export const mockFiles: File[] = [
     type: "file",
     url: "/files/q4-report.pptx",
     parent: "8",
-    size: "5.2 MB",
   },
   {
     id: "10",
@@ -69,6 +63,5 @@ export const mockFiles: File[] = [
     type: "file",
     url: "/files/budget.xlsx",
     parent: "3",
-    size: "1.5 MB",
   },
 ];

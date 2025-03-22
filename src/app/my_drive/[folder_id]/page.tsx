@@ -1,9 +1,10 @@
 import { Suspense } from "react";
 import FoldersList from "./folders_list";
 import FilesList from "./files_list";
-import { FolderPlus, Upload } from "lucide-react";
+import { FolderPlus } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import FoldersBreadcrumb from "./folders_breadcrumb";
+import UploadButton from "./upload_button";
 
 export default async function FolderPage(props: {
   params: Promise<{ folder_id: string }>;
@@ -25,13 +26,7 @@ export default async function FolderPage(props: {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button
-            size="sm"
-            className="bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700"
-          >
-            <Upload className="mr-2 h-4 w-4" />
-            Upload
-          </Button>
+          <UploadButton folderId={folderId} />
           <Button
             size="sm"
             variant="outline"
