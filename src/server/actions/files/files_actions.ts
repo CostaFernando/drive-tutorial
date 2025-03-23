@@ -38,7 +38,7 @@ export async function deleteFile(fileId: number, folderId: number) {
   if (!session?.user?.id) {
     throw new Error("Not authenticated");
   }
-  await deleteFileQuery(fileId, folderId);
+  await deleteFileQuery(fileId);
 
   revalidatePath(`/my_drive/${folderId}`);
 }

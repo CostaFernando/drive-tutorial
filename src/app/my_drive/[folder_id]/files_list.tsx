@@ -7,7 +7,6 @@ import {
   FileIcon as FilePdf,
   FileArchive,
   File,
-  Trash2,
 } from "lucide-react";
 import { getFilesByFolderId } from "~/server/db/queries/files/get_files_by_folder_id";
 import {

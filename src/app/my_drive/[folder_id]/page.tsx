@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import FoldersList from "./folders_list";
 import FilesList from "./files_list";
-import { Button } from "~/components/ui/button";
 import FoldersBreadcrumb from "./folders_breadcrumb";
 import UploadButton from "./upload_button";
 import NewFolderButton from "./new_folder_button";
