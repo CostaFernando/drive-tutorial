@@ -18,5 +18,10 @@ export const auth = betterAuth({
       clientSecret: env.GOOGLE_CLIENT_SECRET as string,
     },
   },
+  advanced: {
+    useSecureCookies: true,
+    cookiePrefix: "better-auth",
+    cookieName: "session_token",
+  },
   plugins: [nextCookies()],
 });
