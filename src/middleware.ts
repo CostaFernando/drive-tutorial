@@ -5,7 +5,12 @@ export async function middleware(request: NextRequest) {
   const sessionCookie = getSessionCookie(request);
 
   if (!sessionCookie) {
-    // return NextResponse.redirect(new URL("/sign_in", request.url));
+    console.log(
+      "No session cookie found. Available cookies:",
+      request.cookies.getAll(),
+    );
+
+    return NextResponse.redirect(new URL("/sign_in", request.url));
   }
 
   return NextResponse.next();
